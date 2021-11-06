@@ -16,12 +16,8 @@ public class GameStart : MonoBehaviour
 
     void Start()
     {
-        /*   memoryFields = GameObject.FindGameObjectsWithTag("MemoryTile");
-        foreach (GameObject item in memoryFields)
-        {
-            item.GetComponent<Renderer>().material =
-                Resources.Load("dark", typeof (Material)) as Material;
-        }*/
+       
+       
     }
 
     public void revalField(GameObject field, string fieldValue)
@@ -51,9 +47,10 @@ public class GameStart : MonoBehaviour
             secondField.GetComponent<Renderer>().material.name
         )
         {
+            MovePlayer(firstField.GetComponent<Renderer>().material.name, 
+            firstField.GetComponent<Collider2D>().bounds.size.x);
             Destroy (firstField);
             Destroy (secondField);
-           // MovePlayer(firstField.GetComponent<Renderer>().material.name);
         }
         else
         {
@@ -66,9 +63,16 @@ public class GameStart : MonoBehaviour
         secondField = null;
     }
 
-    void MovePlayer(string movement)
+    void MovePlayer(string movement , float step)
     {
+        Debug.Log(step);
         if (movement.Contains("leftleft"))
-            player.transform.position = new Vector2(1, 0);
+            player.transform.position += new Vector3(step*1.1f, 0);
+        if (movement.Contains("upup"))
+            player.transform.position += new Vector3(0,-step*1.1f, 0);
+        if (movement.Contains("rightright"))
+            player.transform.position += new Vector3(-step*1.1f,0, 0);
+        if (movement.Contains("downdown"))
+            player.transform.position += new Vector3(0,step*1.1f, 0);
     }
 }
