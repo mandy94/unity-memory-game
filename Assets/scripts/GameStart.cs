@@ -11,14 +11,9 @@ public class GameStart : MonoBehaviour
     private GameObject[] memoryFields;
 
     public GameObject player;
+    public GameObject end;
 
     private bool clicable = true;
-
-    void Start()
-    {
-       
-       
-    }
 
     public void revalField(GameObject field, string fieldValue)
     {
@@ -48,7 +43,7 @@ public class GameStart : MonoBehaviour
         )
         {
             MovePlayer(firstField.GetComponent<Renderer>().material.name, 
-            firstField.GetComponent<Collider2D>().bounds.size.x);
+            firstField.GetComponent<Collider>().bounds.size.x);
             Destroy (firstField);
             Destroy (secondField);
         }
@@ -62,17 +57,28 @@ public class GameStart : MonoBehaviour
         firstField = null;
         secondField = null;
     }
-
+    private string movement;
+    private float step;
+    private bool timeToMove = false;
     void MovePlayer(string movement , float step)
     {
-        Debug.Log(step);
-        if (movement.Contains("leftleft"))
+   
+        if (movement.Contains("left"))
             player.transform.position += new Vector3(step*1.1f, 0);
-        if (movement.Contains("upup"))
+        if (movement.Contains("up"))
             player.transform.position += new Vector3(0,-step*1.1f, 0);
-        if (movement.Contains("rightright"))
+        if (movement.Contains("right"))
             player.transform.position += new Vector3(-step*1.1f,0, 0);
-        if (movement.Contains("downdown"))
+        if (movement.Contains("down"))
             player.transform.position += new Vector3(0,step*1.1f, 0);
+            // this.timeToMove = true;
+            // this.step = step;
+            // this.movement = movement;
+          
+
     }
+
+
+   
+
 }
