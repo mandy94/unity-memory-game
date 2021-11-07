@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class PlayAgain : MonoBehaviour
 {
-    public TextMeshPro Text;
+    private TextMeshPro Text;
 
     private TextMeshPro PlayAgainText;
 
@@ -24,7 +24,8 @@ public class PlayAgain : MonoBehaviour
     {
         this.Text.faceColor = new Color32(255, 255, 255, 0);
         this.PlayAgainText.faceColor = new Color32(255, 255, 255, 0);
-        //this.BlockBehindPlayAgain.GetComponent<Renderer>().material.color = new Color32(255,255,255,0);
+        GameStart.CanClick = true;
+        
     }
 
     void Update()
@@ -32,7 +33,7 @@ public class PlayAgain : MonoBehaviour
     }
 
     void OnMouseDown()
-    {
+    {        
         this.RestartTheGame();
     }
 }

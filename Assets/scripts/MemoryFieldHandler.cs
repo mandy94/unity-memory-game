@@ -6,8 +6,6 @@ public class MemoryFieldHandler : MonoBehaviour
 {
     public string fieldValue; // ime materijala koji prikazuje kada se okrene
 
-    private int clickCounter = 0;
-
     public GameStart gameStart;
 
     void Start()
@@ -20,7 +18,7 @@ public class MemoryFieldHandler : MonoBehaviour
 
     void OnMouseDown()
     {
-        if (gameStart.canClick())
+        if (GameStart.CanClick)
         {
             if (gameStart.firstField == null)
                 gameStart.revalField(this.gameObject, fieldValue);
@@ -31,6 +29,10 @@ public class MemoryFieldHandler : MonoBehaviour
                     gameStart.revalField(this.gameObject, fieldValue);
                     StartCoroutine(gameStart.checkIfEqual());
                 }
+            }
+            if (gameStart.memoryFields.Length == 0)
+            {
+                //you also lost
             }
         }
     }

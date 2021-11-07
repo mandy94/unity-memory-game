@@ -7,7 +7,7 @@ using UnityEngine;
 public class Timer : MonoBehaviour
 {
     public float time = 0;
-    public Light light;
+    
     private bool show = true;
     public GameObject[] memoryFields;
     private string MATERIAL_NAME= "dark";
@@ -35,7 +35,7 @@ public class Timer : MonoBehaviour
     void ChangeScene(){ 
         
         if(show == true){
-            MATERIAL_NAME = "leftleft";
+            MATERIAL_NAME = "left";
         }
         else{            
             MATERIAL_NAME = "dark";

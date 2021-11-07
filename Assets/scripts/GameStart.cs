@@ -8,12 +8,19 @@ public class GameStart : MonoBehaviour
 
     public GameObject secondField = null;
 
-    private GameObject[] memoryFields;
+    public GameObject[] memoryFields;
 
     public GameObject player;
+
     public GameObject end;
 
-    private bool clicable = true;
+    public MemoeryTileGenerator generator ;
+    public static bool CanClick = true;
+
+    void Start()
+    {
+        this.generator.GenerateTiles();
+    }
 
     public void revalField(GameObject field, string fieldValue)
     {
@@ -26,23 +33,18 @@ public class GameStart : MonoBehaviour
             Resources.Load(fieldValue, typeof (Material)) as Material;
     }
 
-    public bool canClick()
-    {
-        return clicable;
-    }
-
     public IEnumerator checkIfEqual()
     {
-        clicable = false;
+        CanClick = false;
         yield return new WaitForSeconds(1);
-        clicable = true;
+        CanClick = true;
 
         if (
             firstField.GetComponent<Renderer>().material.name ==
             secondField.GetComponent<Renderer>().material.name
         )
         {
-            MovePlayer(firstField.GetComponent<Renderer>().material.name, 
+            MovePlayer(firstField.GetComponent<Renderer>().material.name,
             firstField.GetComponent<Collider>().bounds.size.x);
             Destroy (firstField);
             Destroy (secondField);
@@ -57,28 +59,23 @@ public class GameStart : MonoBehaviour
         firstField = null;
         secondField = null;
     }
+
     private string movement;
+
     private float step;
-    private bool timeToMove = false;
-    void MovePlayer(string movement , float step)
+
+    
+
+    void MovePlayer(string movement, float step)
     {
-   
         if (movement.Contains("left"))
-            player.transform.position += new Vector3(step*1.1f, 0);
+            player.transform.position += new Vector3(step * 1.1f, 0);
         if (movement.Contains("up"))
-            player.transform.position += new Vector3(0,-step*1.1f, 0);
+            player.transform.position += new Vector3(0, -step * 1.1f, 0);
         if (movement.Contains("right"))
-            player.transform.position += new Vector3(-step*1.1f,0, 0);
+            player.transform.position += new Vector3(-step * 1.1f, 0, 0);
         if (movement.Contains("down"))
-            player.transform.position += new Vector3(0,step*1.1f, 0);
-            // this.timeToMove = true;
-            // this.step = step;
-            // this.movement = movement;
-          
-
+            player.transform.position += new Vector3(0, step * 1.1f, 0);
+    
     }
-
-
-   
-
 }

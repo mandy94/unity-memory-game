@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;  
+using TMPro;
 public class SceneChanger : MonoBehaviour
 {
-    // Start is called before the first frame update
+
+    public TMP_InputField mainInputField;
+    public static int MATRIX_SIZE;
     void Start()
     {
         
@@ -16,6 +19,10 @@ public class SceneChanger : MonoBehaviour
         
     }
     public void StartGame() {  
-        SceneManager.LoadScene("GameScene");  
+        
+        if( int.TryParse(this.mainInputField.text, out SceneChanger.MATRIX_SIZE)){
+            SceneManager.LoadScene("GameScene");  
+            Debug.Log(MATRIX_SIZE);
+        }
     }  
 }
